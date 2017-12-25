@@ -119,12 +119,5 @@ f:\scoutingsteamworks\scoutingsteamworks\sfmlcode.h(506): warning C4244: 'argume
 f:\scoutingsteamworks\scoutingsteamworks\sfmlcode.h(522): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
 f:\scoutingsteamworks\scoutingsteamworks\sfmlcode.h(524): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 f:\scoutingsteamworks\scoutingsteamworks\sfmlcode.h(532): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-f:\scoutingsteamworks\scoutingsteamworks\main.cpp(384): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-f:\scoutingsteamworks\scoutingsteamworks\main.cpp(397): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-f:\scoutingsteamworks\scoutingsteamworks\main.cpp(412): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-f:\scoutingsteamworks\scoutingsteamworks\main.cpp(427): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-f:\scoutingsteamworks\scoutingsteamworks\main.cpp(443): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-f:\scoutingsteamworks\scoutingsteamworks\main.cpp(458): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-f:\scoutingsteamworks\scoutingsteamworks\main.cpp(473): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   ScoutingStronghold.vcxproj -> F:\ScoutingSteamworks\Debug\ScoutingSteamworks.exe
   ScoutingStronghold.vcxproj -> F:\ScoutingSteamworks\Debug\ScoutingSteamworks.pdb (Partial PDB)
