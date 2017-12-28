@@ -332,8 +332,8 @@ void SFMLCode::drawLabels(std::vector<Standing>& standingVector, sf::Font& font,
 		temp.setFillColor(sf::Color::Black);
 		temp.setFont(font);
 		temp.setScale(SCALE, SCALE);
-		temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 5)) + xOffset, HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .15) + yOffset));
+		temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 4)) + xOffset, HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .15) + yOffset));
 		win.draw(temp);
 
 		temp = standingVector[i].getTeam2Name();
@@ -341,8 +341,8 @@ void SFMLCode::drawLabels(std::vector<Standing>& standingVector, sf::Font& font,
 		temp.setFillColor(sf::Color::Black);
 		temp.setFont(font);
 		temp.setScale(SCALE, SCALE);
-		temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 5) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .3) + yOffset));
+		temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 4) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .3) + yOffset));
 		win.draw(temp);
 
 		temp = standingVector[i].getTeam3Name();
@@ -350,8 +350,8 @@ void SFMLCode::drawLabels(std::vector<Standing>& standingVector, sf::Font& font,
 		temp.setFillColor(sf::Color::Black);
 		temp.setFont(font);
 		temp.setScale(SCALE, SCALE);
-		temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 5)) + xOffset, HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .45) + yOffset));
+		temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 4)) + xOffset, HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .45) + yOffset));
 		win.draw(temp);
 
 		temp = standingVector[i].getTeam4Name();
@@ -359,8 +359,8 @@ void SFMLCode::drawLabels(std::vector<Standing>& standingVector, sf::Font& font,
 		temp.setFillColor(sf::Color::Black);
 		temp.setFont(font);
 		temp.setScale(SCALE, SCALE);
-		temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 5) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .6) + yOffset));
+		temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 4) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .6) + yOffset));
 		win.draw(temp);
 
 		temp = standingVector[i].getTeam5Name();
@@ -368,8 +368,8 @@ void SFMLCode::drawLabels(std::vector<Standing>& standingVector, sf::Font& font,
 		temp.setFillColor(sf::Color::Black);
 		temp.setFont(font);
 		temp.setScale(SCALE, SCALE);
-		temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 5) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .75) + yOffset));
+		temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+		temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (1.0 / 4) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .75) + yOffset));
 		win.draw(temp);
 	}
 }
@@ -438,8 +438,8 @@ void SFMLCode::drawValues(std::vector<Team>& teamsVector, sf::Font& font, sf::Re
 			(teamsVector[i].getEditSelection() == A_GEAR) ? temp.setFillColor(sf::Color::Red) : temp.setFillColor(sf::Color::Black);
 			temp.setFont(font);
 			temp.setScale(SCALE, SCALE);
-			temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 5) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .2) + yOffset));
+			temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 4) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .2) + yOffset));
 			win.draw(temp);
 
 			temp = teamsVector[i].getAutonBallsValue();
@@ -447,8 +447,8 @@ void SFMLCode::drawValues(std::vector<Team>& teamsVector, sf::Font& font, sf::Re
 			(teamsVector[i].getEditSelection() == A_BALLS) ? temp.setFillColor(sf::Color::Red) : temp.setFillColor(sf::Color::Black);
 			temp.setFont(font);
 			temp.setScale(SCALE, SCALE);
-			temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 5)) + xOffset, HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .3) + yOffset));
+			temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 4)) + xOffset, HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .3) + yOffset));
 			win.draw(temp);
 
 			temp = teamsVector[i].getTeleopGearsValue();
@@ -456,8 +456,8 @@ void SFMLCode::drawValues(std::vector<Team>& teamsVector, sf::Font& font, sf::Re
 			(teamsVector[i].getEditSelection() == T_GEARS) ? temp.setFillColor(sf::Color::Red) : temp.setFillColor(sf::Color::Black);
 			temp.setFont(font);
 			temp.setScale(SCALE, SCALE);
-			temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 5) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .5) + yOffset));
+			temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 4) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .5) + yOffset));
 			win.draw(temp);
 
 			temp = teamsVector[i].getTeleopBallsValue();
@@ -465,8 +465,8 @@ void SFMLCode::drawValues(std::vector<Team>& teamsVector, sf::Font& font, sf::Re
 			(teamsVector[i].getEditSelection() == T_BALLS) ? temp.setFillColor(sf::Color::Red) : temp.setFillColor(sf::Color::Black);
 			temp.setFont(font);
 			temp.setScale(SCALE, SCALE);
-			temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 5) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .6) + yOffset));
+			temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 4) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .6) + yOffset));
 			win.draw(temp);
 
 			switch (teamsVector[i].getClimb())
@@ -481,8 +481,8 @@ void SFMLCode::drawValues(std::vector<Team>& teamsVector, sf::Font& font, sf::Re
 			(teamsVector[i].getEditSelection() == CLIMB) ? temp.setFillColor(sf::Color::Red) : temp.setFillColor(sf::Color::Black);
 			temp.setFont(font);
 			temp.setScale(SCALE, SCALE);
-			temp.setOrigin(temp.getLocalBounds().left, temp.getLocalBounds().height / 2);
-			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 5) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .7) + yOffset));
+			temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
+			temp.setPosition(sf::Vector2f(BORDER_WIDTH + (BOX_WIDTH * (3.0 / 4) + xOffset), HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + (BOX_HEIGHT * .7) + yOffset));
 			win.draw(temp);
 		//}
 	}
