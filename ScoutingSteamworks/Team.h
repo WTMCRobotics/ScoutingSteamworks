@@ -2,22 +2,36 @@
 #include <afxdb.h>
 #include <SFML/Graphics.hpp>
 
+// Enumerator for the autonomous gear.
 enum autonGearEnum { MIDDLE = 0, SIDE = 1, MISS = 2, NONE = 3, UNSET = 4 };
+// Enumerator for climbing. (UNDEF = unset, but needed another word because UNSET is defined in autonGearEnum.)
 enum climbEnum { NO = 0, YES = 1, UNDEF = 2 };
+
+// Enumerator for the state of an individual team.
 enum teamState { GAME, EDIT, WAIT };
+// Enumerator for the selection in edit mode.
 enum editSelection { A_GEAR, A_BALLS, T_GEARS, T_BALLS, CLIMB, NO_EDIT };
 
 class Team
 {
 private:
+	// Team number
 	CString number;
+	// Joystick plugged in: true = yes; false = no
 	bool isJoystick;
+	// Autonomous gear value
 	autonGearEnum autonGear;
+	// Match for team (1 through 12)
 	CString teamMatch;
+	// Autonomous balls value
 	int autonBalls;
+	// Teleop gears value
 	int teleopGears;
+	// Teleop balls value
 	int teleopBalls;
+	// Climb value
 	climbEnum climb;
+	// State: GAME = match in progress; EDIT = change values; WAIT = submitted and waiting for next match
 	teamState state;
 	editSelection editSelect;
 	sf::RectangleShape joystickBox;
@@ -76,6 +90,7 @@ public:
 
 	teamState getState() { return state; }
 	editSelection getEditSelection() { return editSelect; }
+	CString getNumberC() { return number; }
 	std::string getNumber() { return CW2A(number); }
 	bool getJoystick() { return isJoystick; }
 	CString getTeamMatch() { return teamMatch; }

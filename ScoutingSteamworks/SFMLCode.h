@@ -20,21 +20,24 @@ private:
 	static void drawValues(std::vector<Standing>& standingVector, sf::Font& font, sf::RenderWindow& win);
 	static void drawJoystickMessage(std::vector<Team>& teamsVector, sf::Font& font, sf::RenderWindow& win);
 public:
+	static void updateSizeValues(double width, double height);
 	static float xOffset;
 	static float yOffset;
 	static void getOffset(int index);
 
-	const static int WIN_WIDTH = 999;
-	const static int WIN_HEIGHT = 650;
+	static float WIN_WIDTH;
+	static float WIN_HEIGHT;
 
-	const static int BORDER_WIDTH = 2;
+	static float BORDER_WIDTH;
 
-	const static int HEAD_HEIGHT = 50;
-	const static int BOX_HEIGHT = (WIN_HEIGHT - HEAD_HEIGHT) / 2;
-	const static int BOX_WIDTH = WIN_WIDTH / 3;
-	const static int BOX_BUFFER = 8;
+	static float HEAD_HEIGHT;
+	static float BOX_HEIGHT;
+	static float BOX_WIDTH;
+	static float BOX_BUFFER;
 
-	const static float SCALE;
+	static float TITLE_SCALE;
+	static float SCALE;
+
 	const static std::string HEADER_GAME_TEXT;
 	const static std::string HEADER_STANDINGS_TEXT;
 	const static std::string TITLE_TEXT;
@@ -51,7 +54,6 @@ public:
 
 };
 
-const float SFMLCode::SCALE = .7;
 const std::string SFMLCode::HEADER_STANDINGS_TEXT = "Competition Standings";
 const std::string SFMLCode::HEADER_GAME_TEXT = "Match: ";
 const std::string SFMLCode::TITLE_TEXT = "Team ";
@@ -66,17 +68,45 @@ const std::string SFMLCode::CLIMB_LABEL = "Climb";
 float SFMLCode::xOffset = 0;
 float SFMLCode::yOffset = 0;
 
+float SFMLCode::WIN_WIDTH = 999;
+float SFMLCode::WIN_HEIGHT = 650;
+float SFMLCode::BORDER_WIDTH = 0;
+float SFMLCode::HEAD_HEIGHT = 0;
+float SFMLCode::BOX_HEIGHT = 0;
+float SFMLCode::BOX_WIDTH = 0;
+float SFMLCode::BOX_BUFFER = 0;
+
+float SFMLCode::SCALE = .7;
+float SFMLCode::TITLE_SCALE = 1;
+
 void SFMLCode::getOffset(int index)
 {
 	switch (index)
 	{
-	case 0: xOffset = 0; yOffset = 0; break;
-	case 1: xOffset = BOX_WIDTH; yOffset = 0; break;
-	case 2: xOffset = BOX_WIDTH * 2; yOffset = 0; break;
-	case 3: xOffset = 0; yOffset = BOX_HEIGHT; break;
-	case 4: xOffset = BOX_WIDTH; yOffset = BOX_HEIGHT; break;
-	case 5: xOffset = BOX_WIDTH * 2; yOffset = BOX_HEIGHT; break;
+	case 0: xOffset = 0; yOffset = BORDER_WIDTH; break;
+	case 1: xOffset = BOX_WIDTH + BORDER_WIDTH; yOffset = BORDER_WIDTH; break;
+	case 2: xOffset = (BOX_WIDTH * 2) + (BORDER_WIDTH * 2); yOffset = BORDER_WIDTH; break;
+	case 3: xOffset = 0; yOffset = BOX_HEIGHT - (BORDER_WIDTH * 2); break;
+	case 4: xOffset = BOX_WIDTH + BORDER_WIDTH; yOffset = BOX_HEIGHT - (BORDER_WIDTH * 2); break;
+	case 5: xOffset = (BOX_WIDTH * 2) + (BORDER_WIDTH * 2); yOffset = BOX_HEIGHT - (BORDER_WIDTH * 2); break;
 	}
+}
+
+void SFMLCode::updateSizeValues(double width, double height)
+{
+	WIN_WIDTH = width;
+	WIN_HEIGHT = height;
+
+	BORDER_WIDTH = height / 325;
+
+	HEAD_HEIGHT = height / 16;
+
+	BOX_HEIGHT = (WIN_HEIGHT - HEAD_HEIGHT) / 2;
+	BOX_WIDTH = WIN_WIDTH / 3 + (BORDER_WIDTH * 2);
+	BOX_BUFFER = BORDER_WIDTH * 4;
+
+	SCALE = height / 929;
+	TITLE_SCALE = height / 650;
 }
 
 void SFMLCode::drawBoxes(std::vector<Team>& teamsVector, sf::RenderWindow& win)
@@ -144,6 +174,7 @@ void SFMLCode::drawHeader(sf::Font& font, sf::RenderWindow& win, CString match)
 	matchNumberText.setString(HEADER_GAME_TEXT + tempStr);
 	matchNumberText.setFillColor(sf::Color::Black);
 	matchNumberText.setFont(font);
+	matchNumberText.setScale(TITLE_SCALE, TITLE_SCALE);
 	matchNumberText.setOrigin(matchNumberText.getLocalBounds().width / 2, matchNumberText.getLocalBounds().height / 2);
 	matchNumberText.setPosition(sf::Vector2f(WIN_WIDTH / 2, (HEAD_HEIGHT / 2) - (BORDER_WIDTH * 2)));
 
@@ -169,6 +200,7 @@ void SFMLCode::drawHeader(sf::Font& font, sf::RenderWindow& win)
 	headerText.setString(HEADER_STANDINGS_TEXT);
 	headerText.setFillColor(sf::Color::Black);
 	headerText.setFont(font);
+	headerText.setScale(TITLE_SCALE, TITLE_SCALE);
 	headerText.setOrigin(headerText.getLocalBounds().width / 2, headerText.getLocalBounds().height / 2);
 	headerText.setPosition(sf::Vector2f(WIN_WIDTH / 2, (HEAD_HEIGHT / 2) - (BORDER_WIDTH * 2)));
 
@@ -189,6 +221,7 @@ void SFMLCode::drawTitles(std::vector<Team>& teamsVector, sf::Font& font, sf::Re
 		else
 			temp.setFillColor(sf::Color::Blue);
 		temp.setFont(font);
+		temp.setScale(TITLE_SCALE, TITLE_SCALE);
 		temp.setOrigin(temp.getLocalBounds().width / 2, temp.getLocalBounds().height / 2);
 		temp.setPosition(sf::Vector2f(-BORDER_WIDTH + (BOX_WIDTH / 2) + xOffset, HEAD_HEIGHT + (BORDER_WIDTH * 2) + BOX_BUFFER + yOffset));
 		win.draw(temp);

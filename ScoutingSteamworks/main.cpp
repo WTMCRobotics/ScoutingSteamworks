@@ -82,8 +82,10 @@ int main()
 	dSN.Format(L"ODBC;DRIVER={%s};DSN='';DBQ=%s", driver, file);
 
 
-	// Make a new window that you can close and has a titlebar
-	sf::RenderWindow window(sf::VideoMode(SFMLCode::WIN_WIDTH, SFMLCode::WIN_HEIGHT), "Scouting Program", sf::Style::Close | sf::Style::Titlebar);
+	// Make a new window.
+	sf::RenderWindow window(sf::VideoMode(999, 650), "Scouting Program", sf::Style::Default);
+	// Start window at the 999 x 650.
+	SFMLCode::updateSizeValues(999, 650);
 	// Joystick Threshold is the point where the absolute value of the axis position must be above to trigger the JoystickMoved event.
 	//		Axis position must be below -50 or above 50.
 	window.setJoystickThreshold(50);
@@ -164,8 +166,8 @@ int main()
 				// for each of the 6 teams [Team Match Number]
 				for (int i = 0; i < 6; i++)
 				{
-					tempStr = teams[i].getNumber();
-					tempC = tempStr.c_str();
+					// Get the team number.
+					tempC = teams[i].getNumberC();
 					// Set SQL query
 					//		tempC = Team number = Table to get records from
 					//		Next match that hasn't been played for a specific team (1 through 12)
@@ -205,9 +207,21 @@ int main()
 			// switch statement that depends on the event type.
 			switch (event.type)
 			{
-				// if window X clicked, close window
+			// if window is resized [Adjust Display Based on Window Size]
+			case sf::Event::Resized:
+			{
+				// Make a rectangle with the size of the window.
+				sf::FloatRect visibleArea(0, 0, event.size.width, event.size.height);
+				// Set the view to the area of the new window.
+				window.setView(sf::View(visibleArea));
+				// Update size values that will be used in drawing on the window.
+				SFMLCode::updateSizeValues(event.size.width, event.size.height);
+				// break for the Resized event.
+				break;
+			} // END of Resized case (braces needed to initialize the FloatRect in the switch statement)
+			// if window X clicked, close window
 			case sf::Event::Closed: window.close(); break;
-				// if a key is pressed
+			// if a key is pressed
 			case sf::Event::KeyPressed:
 				// if the program state is HOLD (all teams have submitted)
 				if (programState == HOLD)
@@ -506,9 +520,7 @@ int main()
 					database.Open(NULL, false, false, dSN);
 
 					// Get the team number.
-					tempStr = teams[i].getNumber();
-					// Convert the team number to a CString.
-					tempC = tempStr.c_str();
+					tempC = teams[i].getNumberC();
 					// Set SQL Query
 					//		UPDATE [teamNumber]
 					//		[teamNumber] = name of the table
@@ -561,9 +573,7 @@ int main()
 					database.ExecuteSQL(query);
 
 					// Get the team number.
-					tempStr = teams[i].getNumber();
-					// Convert the team number to a CString.
-					tempC = tempStr.c_str();
+					tempC = teams[i].getNumberC();
 					// Set SQL Query
 					//		SELECT COUNT(*) AS count FROM [teamNumber] WHERE hasPlayed=true
 					//		Get the number of matches a team has played.
@@ -583,9 +593,7 @@ int main()
 					results.Close();
 
 					// Get the team number.
-					tempStr = teams[i].getNumber();
-					// Convert the team number to a CString.
-					tempC = tempStr.c_str();
+					tempC = teams[i].getNumberC();
 					// Set SQL Query
 					//		SELECT autonGear, autonBalls, teleopBalls, teleopGears FROM [teamNumber] WHERE hasPlayed=true
 					query = "SELECT autonGear, autonBalls, teleopBalls, teleopGears FROM " + tempC + " WHERE hasPlayed=true";
@@ -678,9 +686,7 @@ int main()
 					results.Close();
 
 					// Get the team number.
-					tempStr = teams[i].getNumber();
-					// Convert the team number into a CString.
-					tempC = tempStr.c_str();
+					tempC = teams[i].getNumberC();
 					// Set SQL Query
 					//		tempC = team number = table
 					//		Get the number of times a team has climbed.
@@ -709,9 +715,7 @@ int main()
 					totalsQuery += ", perClimb=" + tempC;
 
 					// Get the team number.
-					tempStr = teams[i].getNumber();
-					// Convert the team number into a CString.
-					tempC = tempStr.c_str();
+					tempC = teams[i].getNumberC();
 					// Set SQL Query
 					//		tempC = team number = table
 					//		Get the number of times a team has scored a gear in the middle or side during autonomous.
@@ -740,9 +744,7 @@ int main()
 					totalsQuery += ", perAutonGearTotal=" + tempC;
 
 					// Get the team number.
-					tempStr = teams[i].getNumber();
-					// Convert the team number to a CString.
-					tempC = tempStr.c_str();
+					tempC = teams[i].getNumberC();
 					// Set SQL Query
 					//		tempC = team number = table
 					//		Get the number of times a team has attempted to score a gear in autonomous (missed or scored in the middle or side).
@@ -771,9 +773,7 @@ int main()
 					totalsQuery += ", perAutonGearAttempted=" + tempC;
 
 					// Get the team number.
-					tempStr = teams[i].getNumber();
-					// Convert the team number to a CString.
-					tempC = tempStr.c_str();
+					tempC = teams[i].getNumberC();
 					// Final SQL Query
 					//		UPDATE totals SET avgAutonBalls=[autonBallsAvg], avgTeleopBalls=[teleopBallsAvg], 
 					//			avgTeleopGears=[teleopGearsAvg], perClimb=[climbPercentage], perAutonGearTotal=[autonGearTotalPercentage], 
