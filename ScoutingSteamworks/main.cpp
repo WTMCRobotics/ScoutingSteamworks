@@ -513,7 +513,7 @@ int main()
 			// for each of the 6 teams [Check to Save the Data]
 			for (int i = 0; i < 6; i++)
 			{
-				// if the corresponding team's state is WAIT (submitted) and has not been saved to the database
+				// if the corresponding team's state is WAIT (submitted) and has not been saved to the database [Save Data]
 				if (teams[i].getState() == WAIT && !teams[i].getSaved())
 				{
 					// Open the database.
@@ -755,23 +755,29 @@ int main()
 					results.GetFieldValue(L"count", tempC);
 					// Convert the count CString into a string.
 					tempStr = CW2A(tempC);
-					// COnvert the count string into a const char*.
+					// Convert the count string into a const char*.
 					tempChar = tempStr.c_str();
 					// Convert the count const char* into a float and set it as the denominator.
 					denominator = atof(tempChar);
 					// Clear the results variable of the records.
 					results.Close();
-					// Calculate fraction. Numerator = number of gears scored in autonomous. Denoinator = number of times attempted to score gear in autonomous. 
-					fraction = numerator / denominator;
-					// Multiply the fraction by 100 to get a percentage.
-					fraction *= 100;
-					// Convert the percentage into a string.
-					tempStr = std::to_string(fraction);
-					// Convert the percentage string into a CString.
-					tempC = tempStr.c_str();
-					// Add to SQL Query.
-					totalsQuery += ", perAutonGearAttempted=" + tempC;
-
+					// if number of times attempted is 0
+					if (denominator == 0)
+						// Set the value to 0 in the perAutonGearAttempted column
+						totalsQuery += ", perAutonGearAttempted=0";
+					else
+					{
+						// Calculate fraction. Numerator = number of gears scored in autonomous. Denoinator = number of times attempted to score gear in autonomous. 
+						fraction = numerator / denominator;
+						// Multiply the fraction by 100 to get a percentage.
+						fraction *= 100;
+						// Convert the percentage into a string.
+						tempStr = std::to_string(fraction);
+						// Convert the percentage string into a CString.
+						tempC = tempStr.c_str();
+						// Add to SQL Query.
+						totalsQuery += ", perAutonGearAttempted=" + tempC;
+					} // END of else statement checking that the denominator is not 0
 					// Get the team number.
 					tempC = teams[i].getNumberC();
 					// Final SQL Query
@@ -779,9 +785,9 @@ int main()
 					//			avgTeleopGears=[teleopGearsAvg], perClimb=[climbPercentage], perAutonGearTotal=[autonGearTotalPercentage], 
 					//			perAutonGearAttempted=[autonGearAttemptedPercentage] WHERE teamNumber=[teamNumber]
 					totalsQuery += " WHERE teamNumber=" + tempC;
+
 					// Execute SQL Query.
 					database.ExecuteSQL(totalsQuery);
-
 					// Set the saved state to true.
 					teams[i].setSaved(true);
 					// Close the connection to the database.

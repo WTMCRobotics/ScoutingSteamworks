@@ -83,12 +83,12 @@ void SFMLCode::getOffset(int index)
 {
 	switch (index)
 	{
-	case 0: xOffset = 0; yOffset = BORDER_WIDTH; break;
-	case 1: xOffset = BOX_WIDTH + BORDER_WIDTH; yOffset = BORDER_WIDTH; break;
-	case 2: xOffset = (BOX_WIDTH * 2) + (BORDER_WIDTH * 2); yOffset = BORDER_WIDTH; break;
-	case 3: xOffset = 0; yOffset = BOX_HEIGHT - (BORDER_WIDTH * 2); break;
-	case 4: xOffset = BOX_WIDTH + BORDER_WIDTH; yOffset = BOX_HEIGHT - (BORDER_WIDTH * 2); break;
-	case 5: xOffset = (BOX_WIDTH * 2) + (BORDER_WIDTH * 2); yOffset = BOX_HEIGHT - (BORDER_WIDTH * 2); break;
+	case 0: xOffset = 0; yOffset = 0; break;
+	case 1: xOffset = BOX_WIDTH; yOffset = 0; break;
+	case 2: xOffset = (BOX_WIDTH * 2); yOffset = 0; break;
+	case 3: xOffset = 0; yOffset = BOX_HEIGHT; break;
+	case 4: xOffset = BOX_WIDTH; yOffset = BOX_HEIGHT; break;
+	case 5: xOffset = (BOX_WIDTH * 2); yOffset = BOX_HEIGHT; break;
 	}
 }
 
@@ -101,7 +101,7 @@ void SFMLCode::updateSizeValues(double width, double height)
 
 	HEAD_HEIGHT = height / 16;
 
-	BOX_HEIGHT = (WIN_HEIGHT - HEAD_HEIGHT) / 2;
+	BOX_HEIGHT = (WIN_HEIGHT - (HEAD_HEIGHT + (BORDER_WIDTH * 2))) / 2;
 	BOX_WIDTH = WIN_WIDTH / 3 + (BORDER_WIDTH * 2);
 	BOX_BUFFER = BORDER_WIDTH * 4;
 
@@ -122,9 +122,9 @@ void SFMLCode::drawBoxes(std::vector<Team>& teamsVector, sf::RenderWindow& win)
 	teamsVector[0].getBox().setPosition(sf::Vector2f(0, HEAD_HEIGHT + (BORDER_WIDTH * 2)));
 	teamsVector[1].getBox().setPosition(sf::Vector2f(BOX_WIDTH + BORDER_WIDTH, HEAD_HEIGHT + (BORDER_WIDTH * 2)));
 	teamsVector[2].getBox().setPosition(sf::Vector2f((BOX_WIDTH + BORDER_WIDTH) * 2, HEAD_HEIGHT + (BORDER_WIDTH * 2)));
-	teamsVector[3].getBox().setPosition(sf::Vector2f(0, HEAD_HEIGHT + BOX_HEIGHT - BORDER_WIDTH));
-	teamsVector[4].getBox().setPosition(sf::Vector2f(BOX_WIDTH + BORDER_WIDTH, HEAD_HEIGHT + BOX_HEIGHT - BORDER_WIDTH));
-	teamsVector[5].getBox().setPosition(sf::Vector2f((BOX_WIDTH + BORDER_WIDTH) * 2, HEAD_HEIGHT + BOX_HEIGHT - BORDER_WIDTH));
+	teamsVector[3].getBox().setPosition(sf::Vector2f(0, HEAD_HEIGHT + BOX_HEIGHT + (BORDER_WIDTH * 2)));
+	teamsVector[4].getBox().setPosition(sf::Vector2f(BOX_WIDTH + BORDER_WIDTH, HEAD_HEIGHT + BOX_HEIGHT + (BORDER_WIDTH * 2)));
+	teamsVector[5].getBox().setPosition(sf::Vector2f((BOX_WIDTH + BORDER_WIDTH) * 2, HEAD_HEIGHT + BOX_HEIGHT + (BORDER_WIDTH * 2)));
 
 	for (int i = 0; i < 6; i++)
 	{
@@ -145,9 +145,9 @@ void SFMLCode::drawBoxes(std::vector<Standing>& standingVector, sf::RenderWindow
 	standingVector[0].getBox().setPosition(sf::Vector2f(0, HEAD_HEIGHT + (BORDER_WIDTH * 2)));
 	standingVector[1].getBox().setPosition(sf::Vector2f(BOX_WIDTH + BORDER_WIDTH, HEAD_HEIGHT + (BORDER_WIDTH * 2)));
 	standingVector[2].getBox().setPosition(sf::Vector2f((BOX_WIDTH + BORDER_WIDTH) * 2, HEAD_HEIGHT + (BORDER_WIDTH * 2)));
-	standingVector[3].getBox().setPosition(sf::Vector2f(0, HEAD_HEIGHT + BOX_HEIGHT - BORDER_WIDTH));
-	standingVector[4].getBox().setPosition(sf::Vector2f(BOX_WIDTH + BORDER_WIDTH, HEAD_HEIGHT + BOX_HEIGHT - BORDER_WIDTH));
-	standingVector[5].getBox().setPosition(sf::Vector2f((BOX_WIDTH + BORDER_WIDTH) * 2, HEAD_HEIGHT + BOX_HEIGHT - BORDER_WIDTH));
+	standingVector[3].getBox().setPosition(sf::Vector2f(0, HEAD_HEIGHT + BOX_HEIGHT + (BORDER_WIDTH * 2)));
+	standingVector[4].getBox().setPosition(sf::Vector2f(BOX_WIDTH + BORDER_WIDTH, HEAD_HEIGHT + BOX_HEIGHT + (BORDER_WIDTH * 2)));
+	standingVector[5].getBox().setPosition(sf::Vector2f((BOX_WIDTH + BORDER_WIDTH) * 2, HEAD_HEIGHT + BOX_HEIGHT + (BORDER_WIDTH * 2)));
 
 	for (int i = 0; i < 6; i++)
 	{
