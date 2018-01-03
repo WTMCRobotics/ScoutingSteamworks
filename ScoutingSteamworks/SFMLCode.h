@@ -399,7 +399,7 @@ void SFMLCode::drawSubmit(std::vector<Team>& teamsVector, sf::Font& font, sf::Re
 
 			tempText = teamsVector[i].getSubmitStatus();
 			if (tempState == GAME)
-				tempText.setString("Submit with SELECT");
+				tempText.setString("Submit with MENU");
 			else if (tempState == EDIT)
 				tempText.setString("<EDIT>");
 			else if (tempState == WAIT)
