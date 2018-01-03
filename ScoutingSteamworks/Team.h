@@ -15,7 +15,7 @@ enum editSelection { A_GEAR, A_BALLS, T_GEARS, T_BALLS, CLIMB, NO_EDIT };
 class Team
 {
 private:
-	// Team number
+	// Team number value
 	CString number;
 	// Joystick plugged in: true = yes; false = no
 	bool isJoystick;
@@ -33,28 +33,56 @@ private:
 	climbEnum climb;
 	// State: GAME = match in progress; EDIT = change values; WAIT = submitted and waiting for next match
 	teamState state;
+	// Edit selection = auton/teleop balls/gears and climb
 	editSelection editSelect;
+	// Box to hold the joystick message
 	sf::RectangleShape joystickBox;
+	// Box for the team
 	sf::RectangleShape box;
+	// Box to hold the submit/edit message
 	sf::RectangleShape submit;
+	// Values have been put in the database: true = yes; false = no
+	bool saved;
+
+	// SFML text variables that allow for drawing text to the window
+	// Team number
 	sf::Text title;
+	// Auton text
 	sf::Text autonLabel;
 	sf::Text autonGearLabel;
 	sf::Text autonGearValue;
 	sf::Text autonBallsLabel;
 	sf::Text autonBallsValue;
+	// Teleop text
 	sf::Text teleopLabel;
 	sf::Text teleopGearsLabel;
 	sf::Text teleopGearsValue;
 	sf::Text teleopBallsLabel;
 	sf::Text teleopBallsValue;
+	// Climb text
 	sf::Text climbLabel;
 	sf::Text climbValue;
+	// Submit text
 	sf::Text submitStatus;
+	// Joystick message text
 	sf::Text joystickText;
-	bool saved;
 public:
-	Team() : state(GAME), autonBalls(0), teleopGears(0), teleopBalls(0), saved(false) { joystickText.setString("Joystick Missing"); }
+	// Constructor
+	// Start by resetting all the variables and setting the text for the text variables
+	Team()
+	{
+		reset();
+		joystickText.setString("Joystick Missing");
+		autonLabel.setString("Auton");
+		autonGearLabel.setString("Gear");
+		autonBallsLabel.setString("Balls");
+		teleopLabel.setString("Teleop");
+		teleopGearsLabel.setString("Gears");
+		teleopBallsLabel.setString("Balls");
+		climbLabel.setString("Climb");
+	} // END of constructor
+
+	// Setters
 	void setNumber(CString x) { number = x; };
 	void setJoystick(bool x) { isJoystick = x; }
 	void setTeamMatch(CString x) { teamMatch = x; }
@@ -67,14 +95,18 @@ public:
 	void setEditSelection(editSelection x) { editSelect = x; }
 	void setSaved(bool x) { saved = x; }
 
+	// Getters for auton/teleop gears/balls and climb value text variables
 	sf::Text& getAutonGearValue() { return autonGearValue; }
 	sf::Text& getAutonBallsValue() { return autonBallsValue; }
 	sf::Text& getTeleopGearsValue() { return teleopGearsValue; }
 	sf::Text& getTeleopBallsValue() { return teleopBallsValue; }
 	sf::Text& getClimbValue() { return climbValue; }
 
-	sf::RectangleShape& getJoystickBox() { return joystickBox; }
+	// Getter for the box
 	sf::RectangleShape& getBox() { return box; }
+	
+
+	// Getters for title (team number) and labels text variables
 	sf::Text& getTitle() { return title; }
 	sf::Text& getAutonLabel() { return autonLabel; }
 	sf::Text& getAutonGearLabel() { return autonGearLabel; }
@@ -83,30 +115,47 @@ public:
 	sf::Text& getTeleopGearsLabel() { return teleopGearsLabel; }
 	sf::Text& getTeleopBallsLabel() { return teleopBallsLabel; }
 	sf::Text& getClimbLabel() { return climbLabel; }
+	
+	// Getters for joystick
+	sf::RectangleShape& getJoystickBox() { return joystickBox; }
+	sf::Text& getJoystickText() { return joystickText; }
+	bool getJoystick() { return isJoystick; }
+
+	// Getters for saving/submitting
 	sf::RectangleShape& getSubmit() { return submit; }
 	sf::Text& getSubmitStatus() { return submitStatus; }
-	sf::Text& getJoystickText() { return joystickText; }
 	bool getSaved() { return saved; }
 
+	// Getter for the team state
 	teamState getState() { return state; }
+	// Getter for the edit selection
 	editSelection getEditSelection() { return editSelect; }
+	// Getters for the team match
+	CString getTeamMatch() { return teamMatch; }
+	
+	// Getters for the team number
 	CString getNumberC() { return number; }
 	std::string getNumber() { return CW2A(number); }
-	bool getJoystick() { return isJoystick; }
-	CString getTeamMatch() { return teamMatch; }
+	
+	// Getters for the values for auton/teleop gears/balls and climb
 	autonGearEnum getAutonGear() { return autonGear; }
 	int getAutonBalls() { return autonBalls; }
 	int getTeleopGears() { return teleopGears; }
 	int getTeleopBalls() { return teleopBalls; }
 	climbEnum getClimb() { return climb; }
 
+	// Reset all the game variables
 	void reset()
 	{
+		// Auton gear back to UNSET
 		autonGear = autonGearEnum::UNSET;
+		// Balls and teleop gears back to 0
 		autonBalls = 0;
 		teleopGears = 0;
 		teleopBalls = 0;
+		// Climb back to UNDEF
 		climb = climbEnum::UNDEF;
+		// Edit selection to NO_EDIT
 		editSelect = NO_EDIT;
-	}
+	} // END of reset
 };
